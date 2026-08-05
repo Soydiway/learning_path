@@ -1,4 +1,12 @@
+from operator import add,sub,mul,truediv,floordiv,mod,pow
 last_result = None
+def division_func(func):
+    def wrapper(f_num,s_num):
+        if s_num == 0:
+            return False
+        result = func(f_num,s_num)
+        return result
+    return wrapper
 while True:
     try:
         choice = int(input("0 - quit | 1 - use last result | 2 - new calculation : "))
@@ -36,45 +44,45 @@ while True:
             print("Enter only numeral value!")
             continue
         if option == 1:
-            last_result = first_num + second_num
-            print(f"{first_num} + {second_num} = {last_result}")
+            last_result = add(first_num,second_num)
+            print(last_result)
             break
         elif option == 2:
-            last_result = first_num - second_num
-            print(f"{first_num} - {second_num} = {last_result}")
+            last_result = sub(first_num,second_num)
+            print(last_result)
             break
         elif option == 3:
-            last_result = first_num * second_num
-            print(f"{first_num} * {second_num} = {last_result}")
+            last_result = mul(first_num,second_num)
+            print(last_result)
             break
         elif option == 4:
-            try:
-                last_result = first_num / second_num
-                print(f"{first_num} / {second_num} = {last_result}")
-                break
-            except ZeroDivisionError:
+            truediv = division_func(truediv)
+            last_result = truediv(first_num,second_num)
+            if last_result is False:
                 print("Error - Division by zero makes no sense :)")
                 continue
+            print(last_result)
+            break
         elif option == 5:
-            last_result = first_num ** second_num
-            print(f"{first_num} ** {second_num} = {last_result}")
+            last_result = pow(first_num,second_num)
+            print(last_result)
             break
         elif option == 6:
-            try:
-                last_result = first_num % second_num
-                print(f"{first_num} % {second_num} = {last_result}")
-                break
-            except ZeroDivisionError:
+            mod = division_func(mod)
+            last_result = mod(first_num,second_num)
+            if last_result is False:
                 print("Error - Division by zero makes no sense :)")
                 continue
+            print(last_result)
+            break
         elif option == 7:
-            try:
-                last_result = first_num // second_num
-                print(f"{first_num} // {second_num} = {last_result}")
-                break
-            except ZeroDivisionError:
+            floordiv = division_func(floordiv)
+            last_result = floordiv(first_num,second_num)
+            if last_result is False:
                 print("Error - Division by zero makes no sense :)")
                 continue
+            print(last_result)
+            break
         else:
             print("Select an option between 1-7")
             continue
