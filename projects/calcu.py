@@ -3,7 +3,7 @@ last_result = None
 def division_func(func):
     def wrapper(f_num,s_num):
         if s_num == 0:
-            return False
+            return None
         result = func(f_num,s_num)
         return result
     return wrapper
@@ -56,9 +56,9 @@ while True:
             print(last_result)
             break
         elif option == 4:
-            truediv = division_func(truediv)
-            last_result = truediv(first_num,second_num)
-            if last_result is False:
+            part_div = division_func(truediv)
+            last_result = part_div(first_num,second_num)
+            if last_result is None:
                 print("Error - Division by zero makes no sense :)")
                 continue
             print(last_result)
@@ -68,17 +68,17 @@ while True:
             print(last_result)
             break
         elif option == 6:
-            mod = division_func(mod)
-            last_result = mod(first_num,second_num)
-            if last_result is False:
+            moda = division_func(mod)
+            last_result = moda(first_num,second_num)
+            if last_result is None:
                 print("Error - Division by zero makes no sense :)")
                 continue
             print(last_result)
             break
         elif option == 7:
-            floordiv = division_func(floordiv)
-            last_result = floordiv(first_num,second_num)
-            if last_result is False:
+            ful_div = division_func(floordiv)
+            last_result = ful_div(first_num,second_num)
+            if last_result is None:
                 print("Error - Division by zero makes no sense :)")
                 continue
             print(last_result)
